@@ -614,9 +614,11 @@ import string
  # по умолчанию, используя свойства default_name и default_age. В методе __init__() определите четыре свойства: Публичные - name и age. Приватные - money и house.
 # 4. Реализуйте справочный метод info(), который будет выводить поля name, age, house и money.
 # 5. Реализуйте справочный статический метод default_info(), который будет выводить статические поля default_name и default_age.
-# 6. Реализуйте приватный метод make_deal(), который будет отвечать за техническую реализацию покупки дома: уменьшать количество денег на счету и присваивать ссылку на только что купленный дом. В качестве аргументов данный метод принимает объект дома и его цену.
+# 6. Реализуйте приватный метод make_deal(), который будет отвечать за техническую реализацию покупки дома: уменьшать количество
+ # денег на счету и присваивать ссылку на только что купленный дом. В качестве аргументов данный метод принимает объект дома и его цену.
 # 7. Реализуйте метод earn_money(), увеличивающий значение свойства money.
-# 8. Реализуйте метод buy_house(), который будет проверять, что у человека достаточно денег для покупки, и совершать сделку. Если денег слишком мало - нужно вывести предупреждение в консоль. Параметры метода: ссылка на дом и размер скидки
+# 8. Реализуйте метод buy_house(), который будет проверять, что у человека достаточно денег для покупки, и совершать сделку.
+ # Если денег слишком мало - нужно вывести предупреждение в консоль. Параметры метода: ссылка на дом и размер скидки
 #
 class Human:
     default_name= 'No name'
@@ -626,21 +628,50 @@ class Human:
         self.age= age
         self.__money=0
         self.__house=None
-    def
+    def info(self):
+        print(f"{self.name} is {self.age} years. His have {self.__money} and  {self.__house}")
+    @staticmethod
+    def default_info():
+        print(Human.default_name)
+        print(Human.default_age)
+    def earn_money(self, salary):
+        self.__money+=salary
+    def buy_house(self, house, discont):
+        price=house.final_price(discont)
+        if self.__money>=price:
+            self.make_deal(house, price)
+        else:
+            print('Not enough money!')
+
+    def make_deal(self, house, price):
+        self.__money=self.__money-price
+        self.__house=house
 #
 # Класс House
 #
 # 1. Создайте класс House
-# 2. Создайте метод __init__() и определите внутри него два динамических свойства: _area и _price. 3. Свои начальные значения они получают из параметров метода __init__()
+# 2. Создайте метод __init__() и определите внутри него два динамических свойства: _area и _price. 3. Свои начальные значения
+ # они получают из параметров метода __init__()
 # 4. Создайте метод final_price(), который принимает в качестве параметра размер скидки и возвращает цену с учетом данной скидки.
-#
+
+class House:
+    def __init__(self, area, price):
+        self._area=area
+        self._price=price
+    def final_price(self, discont):
+        self._price=self._price*(100-discont)/100
+        return self._price
+
 #
 # Класс SmallHouse
 #
 # 1. Создайте класс SmallHouse, унаследовав его функционал от класса House
 # 2. Внутри класса SmallHouse переопределите метод __init__() так, чтобы он создавал объект с площадью 40м2
 #
-#
+class SmallHouse(House):
+    default_area=40
+    def __init__(self, price):
+        super().__init__(SmallHouse.default_area, price)
 # Тесты
 #
 # 1. Вызовите справочный метод  default_info() для класса Human()
@@ -652,4 +683,12 @@ class Human:
 # 7. Снова попробуйте купить дом
 # 8. Посмотрите, как изменилось состояние объекта класса Human
 #
-
+if __name__=='__main__':
+    Human.default_info()
+    new_numan=Human('Ivan', 40)
+    new_numan.info()
+    smal_house=SmallHouse(50000)
+    new_numan.buy_house(smal_house, 15)
+    new_numan.earn_money(60000)
+    new_numan.buy_house(smal_house, 15)
+    new_numan.info()
