@@ -386,17 +386,6 @@
 # 3. Создайте метод print(), который выведет в консоль буквы алфавита
 # 4. Создайте метод letters_num(), который вернет количество букв в алфавите
 #
-import string
-class Alphabet:
-    def __init__(self, lang, letters):
-        self.lang = lang
-        self.letters = list(letters)
-    def print(self, lang, letters):
-        print(letters)
-    def letters_num(self, lang, letters):
-        print(len(letters))
-
-
 # Класс EngAlphabet
 # 1. Создайте класс EngAlphabet путем наследования от класса Alphabet
 # 2. Создайте метод __init__(), внутри которого будет вызываться родительский метод __init__().
@@ -407,9 +396,7 @@ class Alphabet:
  # буква к английскому алфавиту.
 # 5. Переопределите метод letters_num() - пусть в текущем классе классе он будет возвращать значение свойства __letters_num.
 # 6. Создайте статический метод example(), который будет возвращать пример текста на английском языке.
-class EngAlphabet(Alphabet):
-    def __init__(self):
-        super.__init__('En', string.ascii_uppercase)
+
 # Тесты:
 # 1. Создайте объект класса EngAlphabet
 # 2. Напечатайте буквы алфавита для этого объекта
@@ -418,7 +405,56 @@ class EngAlphabet(Alphabet):
 # 5. Проверьте, относится ли буква Щ к английскому алфавиту
 # 6. Выведите пример текста на английском языке
 #
+import string
 #
+# # Алфавит
+# class Alphabet:
+#
+#     def __init__(self, language, letters_str):
+#         self.lang = language
+#         self.letters = list(letters_str)
+#
+#     # Печатаем все буквы алфавита
+#     def print(self):
+#         print(self.letters)
+#
+#     # Возвращаем количество букв в алфавите
+#     def letters_num(self):
+#         len(self.letters)
+#
+#
+# # Английский алфавит
+# class EngAlphabet(Alphabet):
+#
+#     __letters_num = 26
+#
+#     def __init__(self):
+#         super().__init__('En', string.ascii_uppercase)
+#
+#     # Проверяем, относится ли буква к английскому алфавиту
+#     def is_en_letter(self, letter):
+#         if letter.upper() in self.letters:
+#             return True
+#         return False
+#
+#     # Возвращаем количество букв в алфавите
+#     def letters_num(self):
+#         return EngAlphabet.__letters_num
+#
+#     # Печатаем пример текста на английском языке
+#     @staticmethod
+#     def example():
+#         print("English Example:\nDon't judge a book by it's cover.")
+#
+#
+# # Тесты
+# if __name__ == '__main__':
+#     eng_alphabet = EngAlphabet()
+#     eng_alphabet.print()
+#     print(eng_alphabet.letters_num())
+#     print(eng_alphabet.is_en_letter('F'))
+#     print(eng_alphabet.is_en_letter('Щ'))
+#     EngAlphabet.example()
 #
 # Задание 6.2. Садовник и помидоры
 # Описание классовой структуры
@@ -451,24 +487,83 @@ class EngAlphabet(Alphabet):
 # Класс Tomato:
 # 1. Создайте класс Tomato
 # 2. Создайте статическое свойство states, которое будет содержать все стадии созревания помидора
-# 3. Создайте метод __init__(), внутри которого будут определены два динамических protected свойства: 1) _index - передается параметром и 2) _state - принимает первое значение из словаря states
+# 3. Создайте метод __init__(), внутри которого будут определены два динамических protected свойства: 1) _index - передается параметром
+ # и 2) _state - принимает первое значение из словаря states
 # 4. Создайте метод grow(), который будет переводить томат на следующую стадию созревания
 # 5. Создайте метод is_ripe(), который будет проверять, что томат созрел (достиг последней стадии созревания)
 #
-# Класс TomatoBush
-# 1. Создайте класс TomatoBush
-# 2. Определите метод __init__(), который будет принимать в качестве параметра количество томатов и на его основе будет создавать список объектов класса Tomato. Данный список будет храниться внутри динамического свойства tomatoes.
-# 3. Создайте метод grow_all(), который будет переводить все объекты из списка томатов на следующий этап созревания
-# 4. Создайте метод all_are_ripe(), который будет возвращать True, если все томаты из списка стали спелыми
-# 5. Создайте метод give_away_all(), который будет чистить список томатов после сбора урожая
+# class Tomato:
+#     states={1:'Отсутствует', 2: 'Цветение',3: 'Зеленый',4: 'Красный'}
 #
-# Класс Gardener
-# 1. Создайте класс Gardener
-# 2. Создайте метод __init__(), внутри которого будут определены два динамических свойства: 1) name - передается параметром, является публичным и 2) _plant - принимает объект класса Tomato, является protected
-# 3. Создайте метод work(), который заставляет садовника работать, что позволяет растению становиться более зрелым
-# 4. Создайте метод harvest(), который проверяет, все ли плоды созрели. Если все - садовник собирает урожай. Если нет - метод печатает предупреждение.
-# 5. Создайте статический метод knowledge_base(), который выведет в консоль справку по садоводству.
+#     def __init__(self, index):
+#         self.index= index
+#         self.state = 1
+#     def grow(self):
+#         if self.state<=3:
+#             self.state+=1
+#             print(f'Tomato {self.index} is {self.states[self.state]}')
+#     def is_ripe(self):
+#         if self.state==4:
+#             print(f'Tomato {self.index} is mature')
 #
+#     def __repr__(self):
+#         return f'{self.index}, {self.state}'
+#
+#
+# # Класс TomatoBush
+# # 1. Создайте класс TomatoBush
+# # 2. Определите метод __init__(), который будет принимать в качестве параметра количество томатов и на его основе будет создавать список объектов класса
+#  # Tomato. Данный список будет храниться внутри динамического свойства tomatoes.
+# # 3. Создайте метод grow_all(), который будет переводить все объекты из списка томатов на следующий этап созревания
+# # 4. Создайте метод all_are_ripe(), который будет возвращать True, если все томаты из списка стали спелыми
+# # 5. Создайте метод give_away_all(), который будет чистить список томатов после сбора урожая
+# #
+# class TomatoBush:
+#     def __init__(self, num):
+#         self.tomatoes = [Tomato(index) for index in range(0, num - 1)]
+#     def grow_all(self):
+#         for tomato in self.tomatoes:
+#             tomato.grow()
+#     def all_are_ripe(self):
+#         return all([tomato.is_ripe() for tomato in self.tomatoes])
+#     def give_away_all(self):
+#         self.tomatoes=[]
+#
+#
+# # Класс Gardener
+# # 1. Создайте класс Gardener
+# # 2. Создайте метод __init__(), внутри которого будут определены два динамических свойства: 1) name - передается параметром, является публичным
+#  # и 2) _plant - принимает объект класса Tomato, является protected
+# # 3. Создайте метод work(), который заставляет садовника работать, что позволяет растению становиться более зрелым
+# # 4. Создайте метод harvest(), который проверяет, все ли плоды созрели. Если все - садовник собирает урожай. Если нет - метод печатает предупреждение.
+# # 5. Создайте статический метод knowledge_base(), который выведет в консоль справку по садоводству.
+# #
+# class Gardener:
+#     def __init__(self, name, plant):
+#         self.name=name
+#         self._plant=plant
+#     def work(self):
+#         print('Gardener is working...')
+#         self._plant.grow_all()
+#         print('Gardener finished')
+#     def harvest(self):
+#         print('Gardener is harvesting...')
+#         if self._plant.all_are_ripe():
+#             self._plant.give_away_all()
+#             print('Harvesting is finished')
+#         else:
+#             print('Too early! Your plant is green and not ripe.')
+#     @staticmethod
+#     def knowledge_base():
+#         print('''Harvest time for tomatoes should ideally occur
+#         when the fruit is a mature green and
+#         then allowed to ripen off the vine.
+#         This prevents splitting or bruising
+#         and allows for a measure of control over the ripening process.''')
+
+
+
+
 # Тесты:
 # 1. Вызовите справку по садоводству
 # 2. Создайте объекты классов TomatoBush и Gardener
@@ -477,6 +572,17 @@ class EngAlphabet(Alphabet):
 # 5. Если томаты еще не дозрели, продолжайте ухаживать за ними
 # 6. Соберите урожай
 #
+# if __name__ == '__main__':
+#     Gardener.knowledge_base()
+#     great_tomato_bush=TomatoBush(3)
+#     gardener_ivan=Gardener('Ivan', great_tomato_bush)
+#     gardener_ivan.work()
+#     gardener_ivan.harvest()
+#     gardener_ivan.work()
+#     gardener_ivan.harvest()
+#     gardener_ivan.work()
+#     gardener_ivan.harvest()
+
 #
 # Задание 6.3. Покупка дома
 # Описание классовой структуры
@@ -504,13 +610,23 @@ class EngAlphabet(Alphabet):
 #
 # 1. Создайте класс Human.
 # 2. Определите для него два статических поля: default_name и default_age.
-# 3. Создайте метод __init__(), который помимо self принимает еще два параметра: name и age. Для этих параметров задайте значения по умолчанию, используя свойства default_name и default_age. В методе __init__() определите четыре свойства: Публичные - name и age. Приватные - money и house.
+# 3. Создайте метод __init__(), который помимо self принимает еще два параметра: name и age. Для этих параметров задайте значения
+ # по умолчанию, используя свойства default_name и default_age. В методе __init__() определите четыре свойства: Публичные - name и age. Приватные - money и house.
 # 4. Реализуйте справочный метод info(), который будет выводить поля name, age, house и money.
 # 5. Реализуйте справочный статический метод default_info(), который будет выводить статические поля default_name и default_age.
 # 6. Реализуйте приватный метод make_deal(), который будет отвечать за техническую реализацию покупки дома: уменьшать количество денег на счету и присваивать ссылку на только что купленный дом. В качестве аргументов данный метод принимает объект дома и его цену.
 # 7. Реализуйте метод earn_money(), увеличивающий значение свойства money.
 # 8. Реализуйте метод buy_house(), который будет проверять, что у человека достаточно денег для покупки, и совершать сделку. Если денег слишком мало - нужно вывести предупреждение в консоль. Параметры метода: ссылка на дом и размер скидки
 #
+class Human:
+    default_name= 'No name'
+    default_age=0
+    def __init__(self, name=default_name, age=default_age):
+        self.name= name
+        self.age= age
+        self.__money=0
+        self.__house=None
+    def
 #
 # Класс House
 #
