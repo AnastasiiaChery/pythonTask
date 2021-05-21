@@ -68,16 +68,24 @@
 #
 # 8. Write a Python program to display the first and last colors from the following list. Go to the editor
 # color_list = ["Red","Green","White" ,"Black"]
+# print(color_list[:1])
+# print(color_list[-1:])
+
 #
 #
 # 9. Write a Python program to display the examination schedule. (extract the date from exam_st_date). Go to the editor
 # exam_st_date = (11, 12, 2014)
-# Sample Output : The examination will start from : 11 / 12 / 2014
+# # Sample Output : The examination will start from : 11 / 12 / 2014
+# print( "The examination will start from : %i / %i / %i"%exam_st_date)
 #
 #
 # 10. Write a Python program that accepts an integer (n) and computes the value of n+nn+nnn. Go to the editor
 # Sample value of n is 5
 # Expected Result : 615
+# def num_fun(num):
+#     sum=int(str(num))+int(str(num)*2)+int(str(num)*3)
+#     return sum
+# print(num_fun(5))
 #
 #
 # 11. Write a Python program to print the documents (syntax, description etc.) of Python built-in function(s).
@@ -86,10 +94,16 @@
 # abs(number) -> number
 # Return the absolute value of the argument.
 #
+
+# print(abs.__doc__)
 #
 # 12. Write a Python program to print the calendar of a given month and year.
 # Note : Use 'calendar' module.
 #
+# import calendar
+# y = int(input("Input the year : "))
+# m = int(input("Input the month : "))
+# print(calendar.month(y, m))
 #
 # 13. Write a Python program to print the following 'here document'. Go to the editor
 # Sample string :
