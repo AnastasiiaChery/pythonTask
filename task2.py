@@ -306,7 +306,21 @@
 #     1. Создайте HTTP соединение по адресу www.google.com
 #     2. Отправьте GET запрос по адресу выше
 #     3. Проверьте ответ на отправленный запрос
-#
+# import http
+# from http import client
+# help('http')
+# if __name__ == '__main__':
+#     # 3.1. Создаем соединение по адресу 'www.google.com'
+#     # Для этого обращаемся к модулю client
+#     # И вызываем конструктор класса HTTPConnection()
+#     connection = client.HTTPConnection('www.google.com')
+#     # 3.2. Отправляем GET запрос к корневой странице веб-сервера
+#     connection.request('GET', '/')
+#     # 3.3. Получаем ответ на наш запрос
+#     res = connection.getresponse()
+#     # Из полного ответа достаем интересующую нас веб-страницу(ее HTML код)
+#     page = res.read()
+#     print(page)
 #
 # Задание 4.3
 # Условие
@@ -620,32 +634,32 @@ import string
 # 8. Реализуйте метод buy_house(), который будет проверять, что у человека достаточно денег для покупки, и совершать сделку.
  # Если денег слишком мало - нужно вывести предупреждение в консоль. Параметры метода: ссылка на дом и размер скидки
 #
-class Human:
-    default_name= 'No name'
-    default_age=0
-    def __init__(self, name=default_name, age=default_age):
-        self.name= name
-        self.age= age
-        self.__money=0
-        self.__house=None
-    def info(self):
-        print(f"{self.name} is {self.age} years. His have {self.__money} and  {self.__house}")
-    @staticmethod
-    def default_info():
-        print(Human.default_name)
-        print(Human.default_age)
-    def earn_money(self, salary):
-        self.__money+=salary
-    def buy_house(self, house, discont):
-        price=house.final_price(discont)
-        if self.__money>=price:
-            self.make_deal(house, price)
-        else:
-            print('Not enough money!')
-
-    def make_deal(self, house, price):
-        self.__money=self.__money-price
-        self.__house=house
+# class Human:
+#     default_name= 'No name'
+#     default_age=0
+#     def __init__(self, name=default_name, age=default_age):
+#         self.name= name
+#         self.age= age
+#         self.__money=0
+#         self.__house=None
+#     def info(self):
+#         print(f"{self.name} is {self.age} years. His have {self.__money} and  {self.__house}")
+#     @staticmethod
+#     def default_info():
+#         print(Human.default_name)
+#         print(Human.default_age)
+#     def earn_money(self, salary):
+#         self.__money+=salary
+#     def buy_house(self, house, discont):
+#         price=house.final_price(discont)
+#         if self.__money>=price:
+#             self.make_deal(house, price)
+#         else:
+#             print('Not enough money!')
+#
+#     def make_deal(self, house, price):
+#         self.__money=self.__money-price
+#         self.__house=house
 #
 # Класс House
 #
@@ -654,41 +668,41 @@ class Human:
  # они получают из параметров метода __init__()
 # 4. Создайте метод final_price(), который принимает в качестве параметра размер скидки и возвращает цену с учетом данной скидки.
 
-class House:
-    def __init__(self, area, price):
-        self._area=area
-        self._price=price
-    def final_price(self, discont):
-        self._price=self._price*(100-discont)/100
-        return self._price
+# class House:
+#     def __init__(self, area, price):
+#         self._area=area
+#         self._price=price
+#     def final_price(self, discont):
+#         self._price=self._price*(100-discont)/100
+#         return self._price
 
 #
-# Класс SmallHouse
-#
-# 1. Создайте класс SmallHouse, унаследовав его функционал от класса House
-# 2. Внутри класса SmallHouse переопределите метод __init__() так, чтобы он создавал объект с площадью 40м2
-#
-class SmallHouse(House):
-    default_area=40
-    def __init__(self, price):
-        super().__init__(SmallHouse.default_area, price)
-# Тесты
-#
-# 1. Вызовите справочный метод  default_info() для класса Human()
-# 2. Создайте объект класса Human
-# 3. Выведите справочную информацию о созданном объекте (вызовите метод info()).
-# 4. Создайте объект класса SmallHouse
-# 5. Попробуйте купить созданный дом, убедитесь в получении предупреждения.
-# 6. Поправьте финансовое положение объекта - вызовите метод earn_money()
-# 7. Снова попробуйте купить дом
-# 8. Посмотрите, как изменилось состояние объекта класса Human
-#
-if __name__=='__main__':
-    Human.default_info()
-    new_numan=Human('Ivan', 40)
-    new_numan.info()
-    smal_house=SmallHouse(50000)
-    new_numan.buy_house(smal_house, 15)
-    new_numan.earn_money(60000)
-    new_numan.buy_house(smal_house, 15)
-    new_numan.info()
+# # Класс SmallHouse
+# #
+# # 1. Создайте класс SmallHouse, унаследовав его функционал от класса House
+# # 2. Внутри класса SmallHouse переопределите метод __init__() так, чтобы он создавал объект с площадью 40м2
+# #
+# class SmallHouse(House):
+#     default_area=40
+#     def __init__(self, price):
+#         super().__init__(SmallHouse.default_area, price)
+# # Тесты
+# #
+# # 1. Вызовите справочный метод  default_info() для класса Human()
+# # 2. Создайте объект класса Human
+# # 3. Выведите справочную информацию о созданном объекте (вызовите метод info()).
+# # 4. Создайте объект класса SmallHouse
+# # 5. Попробуйте купить созданный дом, убедитесь в получении предупреждения.
+# # 6. Поправьте финансовое положение объекта - вызовите метод earn_money()
+# # 7. Снова попробуйте купить дом
+# # 8. Посмотрите, как изменилось состояние объекта класса Human
+# #
+# if __name__=='__main__':
+#     Human.default_info()
+#     new_numan=Human('Ivan', 40)
+#     new_numan.info()
+#     smal_house=SmallHouse(50000)
+#     new_numan.buy_house(smal_house, 15)
+#     new_numan.earn_money(60000)
+#     new_numan.buy_house(smal_house, 15)
+#     new_numan.info()
