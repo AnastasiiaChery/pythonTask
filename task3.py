@@ -351,83 +351,109 @@
 
 # 35. Write a Python program that will return true if the two given integer values are equal or their sum or difference is 5. 
 #
+# def prog(a, b):
+#
+#     if a==b or abs(a-b)==5 or a+b==5:
+#         return True
+#     else:
+#         return False
+#
+# print(prog(3, 7))
+# print(prog(5, 5))
+# print(prog(5, 10))
+# print(prog(3, 2))
 #
 # 36. Write a Python program to add two objects if both objects are an integer type. 
 #
+# def add_numbers(a, b):
+#     if not (isinstance(a, int) and isinstance(b, int)):
+#          raise TypeError("Inputs must be integers")
+#     return a + b
+#
+# print(add_numbers(10, 20))
 #
 # 37. Write a Python program to display your details like name, age, address in three different lines. 
 #
+# name=input('You name:')
+# age=input('You age:')
+# address=input('You address:')
+# print(f'{name}\n {age}\n {address}\n')
 #
 # 38. Write a Python program to solve (x + y) * (x + y). 
 # Test Data : x = 4, y = 3
 # Expected Output : (4 + 3) ^ 2) = 49
 #
-#
+# x=4
+# y=3
+# def solve(x,y):
+#     result=(x+y)**2
+#     print(f'({x}+{y})^2 = {result}')
+# #
+# solve(x, y)
 # 39. Write a Python program to compute the future value of a specified principal amount, compounded annually. 
 # Test Data : amt = 10000, int = 3.5, years = 7
 # Expected Output : 12722.79
 #
+# amt = 10000
+# int = 3.5
+# years = 7
+# def amount(amt, int, years):
+#     sum=amt*((1+(int/100))**years)
+#     return sum
+# print(amount(amt, int, years))
 #
 # 40. Write a Python program to compute the distance between the points (x1, y1) and (x2, y2). 
 #
+# import math
+# p1 = [4, 0]
+# p2 = [6, 6]
+# distance = math.sqrt( ((p1[0]-p2[0])**2)+((p1[1]-p2[1])**2) )
+#
+# print(distance)
 #
 # 41. Write a Python program to check whether a file exists. 
-#
-#
-# 42. Write a Python program to determine if a Python shell is executing in 32bit or 64bit mode on OS. 
-#
-#
-# 43. Write a Python program to get OS name, platform and release information. 
-#
-#
-# 44. Write a Python program to locate Python site-packages. 
-#
-#
-# 45. Write a python program to call an external command in Python. 
-#
-#
-# 46. Write a python program to get the path and name of the file that is currently executing. 
-#
-#
-# 47. Write a Python program to find out the number of CPUs using. 
-#
-#
+
+# import os.path
+# open('abc.txt', 'w')
+# print(os.path.isfile('abc.txt'))
+
 # 48. Write a Python program to parse a string to Float or Integer. 
 #
-#
-# 49. Write a Python program to list all files in a directory in Python. 
-#
+# n = "246.2458"
+# print(float(n))
+# print(int(float(n)))
 #
 # 50. Write a Python program to print without newline or space. 
 #
-#
-# 51. Write a Python program to determine profiling of Python programs. 
-# Note: A profile is a set of statistics that describes how often and for how long various parts of the program executed. These statistics can be formatted into reports via the pstats module.
-#
+# for i in range(1, 10):
+#     print('*', end='')
 #
 # 52. Write a Python program to print to stderr. 
 #
+# from sys import stderr
 #
-# 53. Write a python program to access environment variables. 
-#
-#
-# 54. Write a Python program to get the current username 
-#
-#
-# 55. Write a Python to find local IP addresses using Python's stdlib 
-#
-#
-# 56. Write a Python program to get height and width of the console window. 
-#
-#
-# 57. Write a Python program to get execution time for a Python method. 
-#
+# print(stderr)
 #
 # 58. Write a python program to find the sum of the first n positive integers. 
 #
+
+# def sum(count):
+#     sum =0
+#     for i in range(1, count+1):
+#         sum=sum+i
+#     return sum
+# print(sum(5))
 #
 # 59. Write a Python program to convert height (in feet and inches) to centimeters. 
 #
+# print("Input your height: ")
+# h_ft = int(input("Feet: "))
+# h_inch = int(input("Inches: "))
+#
+# h_inch += h_ft * 12
+# h_cm = round(h_inch * 2.54, 1)
+#
+# print("Your height is : %d cm." % h_cm)
 #
 # 60. Write a Python program to calculate the hypotenuse of a right angled triangle. 
 #
