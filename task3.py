@@ -262,31 +262,93 @@
 #     815, 67, 104, 58, 512, 24, 892, 894, 767, 553, 81, 379, 843, 831, 445, 742, 717,
 #     958,743, 527
 #     ]
-#
+# #
+# def even_num(list):
+#     new_list=[]
+#     for i in list:
+#         if i==237:
+#             break
+#         if i%2==0:
+#             new_list.append((i))
+#     return new_list
+# print(even_num(numbers))
 #
 # 29. Write a Python program to print out a set containing all the colors from color_list_1 which are not present in color_list_2. 
 # Test Data :
 # color_list_1 = set(["White", "Black", "Red"])
 # color_list_2 = set(["Red", "Green"])
-# Expected Output :
-# {'Black', 'White'}
-#
-#
+# # Expected Output :
+# # {'Black', 'White'}
+# #
+# print(color_list_1.difference(color_list_2))
+# print(color_list_2.difference(color_list_1))
+
 # 30. Write a Python program that will accept the base and height of a triangle and compute the area. 
 #
 #
+# def area(base, height):
+#     area=1/2*base*height
+#     return area
+# print(area(6, 5))
 # 31. Write a Python program to compute the greatest common divisor (GCD) of two positive integers. 
 #
+# def gcd(x, y):
+#     gcd = 1
+#
+#     if x % y == 0:
+#         return y
+#
+#     for k in range(int(y / 2), 0, -1):
+#         if x % k == 0 and y % k == 0:
+#             gcd = k
+#             break
+#     return gcd
+#
+#
+# print(gcd(12, 17))
+# print(gcd(4, 6))
 #
 # 32. Write a Python program to get the least common multiple (LCM) of two positive integers. 
 #
+# def lcm(x, y):
+#    if x > y:
+#        z = x
+#    else:
+#        z = y
+#
+#    while(True):
+#        if((z % x == 0) and (z % y == 0)):
+#            lcm = z
+#            break
+#        z += 1
+#
+#    return lcm
+# print(lcm(4, 6))
+# print(lcm(15, 17))
 #
 # 33. Write a Python program to sum of three given integers. However, if two values are equal sum will be zero. 
 #
+# def sumator(a, b, c):
+#     if a==b or b==c or c==a:
+#         return 0
+#     else:
+#         return a+b+c
+# print(sumator(7, 3, 2))
+# print(sumator(2, 3, 2))
 #
 # 34. Write a Python program to sum of two given integers. However, if the sum is between 15 to 20 it will return 20. 
 #
 #
+# def sumator(a, b):
+#     sum=a+b
+#     if sum>=15 and sum<=20:
+#         return 20
+#     else:
+#         return sum
+# print(sumator(5, 11))
+# print(sumator(5, 4))
+
+
 # 35. Write a Python program that will return true if the two given integer values are equal or their sum or difference is 5. 
 #
 #
